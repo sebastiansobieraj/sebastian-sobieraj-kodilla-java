@@ -28,7 +28,7 @@ public class CollectionTestSuite {
         ArrayList<Integer> testEvenNumbersList = oddNumbersExterminator.exterminate(numbers);
         ArrayList<Integer> emptyList = new ArrayList<Integer>();
         //Then
-        Assert.assertEquals(emptyList, testEvenNumbersList);
+        Assert.assertEquals(emptyList.size(), testEvenNumbersList.size());
     }
 
     @Test
