@@ -3,19 +3,23 @@ package com.kodilla.testing.com.kodilla.testing.shape;
 
 public class Square implements Shape {
 
-    private String name = "";
-    private double field = 0.0;
+    private String name;
+    private double field;
+    private double a = 5;
+    private double b = 5;
 
     public Square(String name, double field) {
         this.name = name;
         this.field = field;
     }
 
-    public String getShapeName() {
+    @Override
+    public String getShapeName(String name) {
         return name;
     }
 
-    public double getField(double a, double b) {
+    @Override
+    public double getField() {
         field = a * b;
         return a * b;
     }

@@ -5,19 +5,22 @@ import static java.lang.Math.pow;
 
 public class Circle implements Shape {
 
-    private String name = "";
-    private double field = 0.0;
+    private String name;
+    private double field;
+    private double r = 5;
 
     public Circle(String name, double field) {
         this.name = name;
         this.field = field;
     }
 
-    public String getShapeName() {
+    @Override
+    public String getShapeName(String name) {
         return name;
     }
 
-    public double getField(double r) {
+    @Override
+    public double getField() {
         field = PI * pow(r, 2);
         return PI * pow(r, 2);
     }
