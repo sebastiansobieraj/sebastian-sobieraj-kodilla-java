@@ -54,4 +54,33 @@ public class CollectionTestSuite {
         //Then
         Assert.assertEquals(evenNumbersExpected, evenNumbersActual);
     }
+
+    @Test
+    public void testExterminate (){
+        //Given
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        //When
+        numbers.add(6);
+
+
+        ArrayList<Integer> evenNumbersActual = oddNumbersExterminator.exterminate(numbers);
+        int zmienna = evenNumbersActual.get(0);
+
+        //Then
+        Assert.assertEquals(6, zmienna);
+    }
+    @Test
+    public void testOddNumber (){
+        //Given
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        //When
+        numbers.add(7);
+
+        ArrayList<Integer> evenNumbersActual = oddNumbersExterminator.exterminate(numbers);
+
+        //Then
+        Assert.assertTrue(evenNumbersActual.isEmpty());
+    }
 }
