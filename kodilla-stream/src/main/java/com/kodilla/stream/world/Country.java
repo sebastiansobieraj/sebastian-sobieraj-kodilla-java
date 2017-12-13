@@ -2,7 +2,7 @@ package com.kodilla.stream.world;
 
 import java.math.BigDecimal;
 
-public final class Country implements QuantityOfPeople {
+public final class Country {
     private final String country;
     private final BigDecimal peopleQuantity;
 
@@ -15,7 +15,6 @@ public final class Country implements QuantityOfPeople {
         return country;
     }
 
-    @Override
     public BigDecimal getPeopleQuantity() {
         BigDecimal quantity = new BigDecimal(String.valueOf(peopleQuantity));
         return quantity;
