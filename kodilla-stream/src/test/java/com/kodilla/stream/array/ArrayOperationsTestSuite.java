@@ -10,14 +10,16 @@ import static com.kodilla.stream.array.ArrayOperations.getAverage;
 
 public class ArrayOperationsTestSuite {
     @Test
-    public void testGetAverage(){
+    public void testGetAverage() {
         //Given
-        int numbers [] = {5,3,6,8,5};
+        int numbers[] = {5, 3, 6, 8, 5};
 
         //When
         OptionalDouble avgResult = getAverage(numbers);
+        double avgActual = avgResult.getAsDouble();
+
 
         //Then
-        Assert.assertEquals(5.4, avgResult);
+        Assert.assertEquals(5.4, avgActual, 0);
     }
 }
