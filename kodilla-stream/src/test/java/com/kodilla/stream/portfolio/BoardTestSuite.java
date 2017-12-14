@@ -88,8 +88,8 @@ public class BoardTestSuite {
     public void testAddTaskListFindUsersTasks() {
         //Given
         Board project = prepareTestData();
-        //When
         User user = new User("developer1", "John Smith");
+        //When
         List<Task> tasks = project.getTaskLists().stream()
                 .flatMap(l -> l.getTasks().stream())
                 .filter(t -> t.getAssignedUser().equals(user))
@@ -104,11 +104,11 @@ public class BoardTestSuite {
     public void testAddTaskListFindOutdatedTasks() {
         //Given
         Board project = prepareTestData();
-
-        //When
         List<TaskList> undoneTasks = new ArrayList<>();
         undoneTasks.add(new TaskList("To do"));
         undoneTasks.add(new TaskList("In progress"));
+
+        //When
         List<Task> tasks = project.getTaskLists().stream()
                 .filter(undoneTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
@@ -124,10 +124,10 @@ public class BoardTestSuite {
     public void testAddTaskListFindLongTasks() {
         //Given
         Board project = prepareTestData();
-
-        //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
+
+        //When
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
@@ -143,11 +143,10 @@ public class BoardTestSuite {
     public void testAddTaskListAverageWorkingOnTask() {
         //Given
         Board project = prepareTestData();
-
-        //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
 
+        //When
         double averageDays = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(t1 -> t1.getTasks().stream())
