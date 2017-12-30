@@ -8,7 +8,9 @@ public class ProductOrderRunner {
         InformationService informationService = new InformationService();
 
         Order order = new Order();
-        OrderRequest orderRequest = order.newOrder();
+        Customer customer = new Customer("Jan", "Kowalski", "jkowalski@gmail.com");
+        Product product = new Product("Iphone", 2999.00);
+        OrderRequest orderRequest = order.newOrder(customer, product, 2);
 
         ProductOrderService productOrderService = new ProductOrderService(informationService, wearehouseInformation);
         productOrderService.process(orderRequest);
