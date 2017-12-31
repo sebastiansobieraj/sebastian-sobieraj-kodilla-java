@@ -25,12 +25,14 @@ public class GlutenFreeShop implements Supplier {
         double payment = foodOrder.getItemAmount() * getPriceForUnit();
         double extraPayment = payment * getExtraPay() + payment;
 
-        if (foodOrder.getItemAmount() > 10) {
+        if (foodOrder.getItemAmount() >= 10) {
             System.out.println("Bill is equals: " + payment);
-        } else {
+            return true;
+        } else if (foodOrder.getItemAmount() > 5 && foodOrder.getItemAmount() < 10){
             System.out.println("Amount is very small. Extra payment equals: " + extraPayment);
+            return true;
         }
-
-        return true;
+        System.out.println("Amount to small!");
+        return false;
     }
 }

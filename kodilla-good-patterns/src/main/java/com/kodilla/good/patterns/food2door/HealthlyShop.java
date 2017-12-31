@@ -19,7 +19,7 @@ public class HealthlyShop implements Supplier {
 
         double payment = foodOrder.getItemAmount() * getPriceForUnit();
 
-        System.out.println("Bill is eulas: " + payment);
+        System.out.println("Bill equals: " + payment);
 
         return true;
     }

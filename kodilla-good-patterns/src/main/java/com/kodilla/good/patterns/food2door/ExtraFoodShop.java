@@ -25,11 +25,14 @@ public class ExtraFoodShop implements Supplier {
         double regularPayment = foodOrder.getItemAmount() * getPriceForUnit();
         double discountPayment = regularPayment * getDiscount();
 
-        if (foodOrder.getItemAmount() > 15) {
+        if (foodOrder.getItemAmount() >= 15) {
             System.out.println("Payment with " + getDiscount() + " discount. Bill equals: " + discountPayment);
-        } else {
+            return true;
+        } else if (foodOrder.getItemAmount() < 15 && foodOrder.getItemAmount() > 5){
             System.out.println("Bill equals: " + regularPayment);
+            return true;
         }
-        return true;
+        System.out.println("Amount to small!");
+        return false;
     }
 }
