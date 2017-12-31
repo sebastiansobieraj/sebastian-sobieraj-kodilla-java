@@ -10,8 +10,8 @@ public class FlightSearcher {
                 .filter(departure -> departure.getDepartureAirport().equals(city))
                 .collect(Collectors.toList());
 
-        if (depatureCities.equals(null)) {
-            System.out.println("Flight not found");
+        if (depatureCities.size() == 0) {
+            System.out.println("Flight form " + city + " not found");
         } else {
             System.out.println("\nFlights from: " + city);
             depatureCities.forEach(System.out::println);
@@ -23,8 +23,8 @@ public class FlightSearcher {
                 .filter(arrival -> arrival.getArrivalAirport().equals(city))
                 .collect(Collectors.toList());
 
-        if (arrivalCities.equals(null)) {
-            System.out.println("Flight not found");
+        if (arrivalCities.size() == 0) {
+            System.out.println("\nFlight to " + city + " not found");
         } else {
             System.out.println("\nFlights to: " + city);
             arrivalCities.forEach(System.out::println);
