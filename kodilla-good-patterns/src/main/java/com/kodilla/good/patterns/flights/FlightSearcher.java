@@ -5,23 +5,33 @@ import java.util.stream.Collectors;
 
 public class FlightSearcher {
 
-    public void searchFlightsFromCity (String city){
+    public void searchFlightsFromCity(String city) {
         List<Flight> depatureCities = FlightDatabase.getFlightsDatabase().stream()
                 .filter(departure -> departure.getDepartureAirport().equals(city))
                 .collect(Collectors.toList());
-        System.out.println("\nFlights from: " + city);
-        depatureCities.forEach(System.out::println);
+
+        if (depatureCities.equals(null)) {
+            System.out.println("Flight not found");
+        } else {
+            System.out.println("\nFlights from: " + city);
+            depatureCities.forEach(System.out::println);
+        }
     }
 
-    public void searchFlightsToCity (String city){
+    public void searchFlightsToCity(String city) {
         List<Flight> arrivalCities = FlightDatabase.getFlightsDatabase().stream()
                 .filter(arrival -> arrival.getArrivalAirport().equals(city))
                 .collect(Collectors.toList());
-        System.out.println("\nFlights to: " + city);
-        arrivalCities.forEach(System.out::println);
+
+        if (arrivalCities.equals(null)) {
+            System.out.println("Flight not found");
+        } else {
+            System.out.println("\nFlights to: " + city);
+            arrivalCities.forEach(System.out::println);
+        }
     }
 
-    public void searchFlightsWithChange (String departureCity, String changeCity, String arrivalCity){
+    public void searchFlightsWithChange(String departureCity, String changeCity, String arrivalCity) {
         List<Flight> firstFlight = FlightDatabase.getFlightsDatabase().stream()
                 .filter(departure -> departure.getDepartureAirport().equals(departureCity))
                 .filter(change -> change.getArrivalAirport().equals(changeCity))
