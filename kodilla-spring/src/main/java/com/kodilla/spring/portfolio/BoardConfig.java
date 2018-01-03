@@ -12,7 +12,7 @@ public class BoardConfig {
         return new Board(getToDoList(), getTasksInProgressList(), getDoneList());
     }
 
-    @Bean(name = "To Do List")
+    @Bean(name = "toDoList")
     @Scope("prototype")
     public TasksList getToDoList(){
         ArrayList<String> list = new ArrayList<>();
@@ -20,7 +20,7 @@ public class BoardConfig {
         return new TasksList(list);
     }
 
-    @Bean(name = "Tasks In Progress")
+    @Bean(name = "inProgressList")
     @Scope("prototype")
     public TasksList getTasksInProgressList(){
         ArrayList<String> list = new ArrayList<>();
@@ -28,7 +28,7 @@ public class BoardConfig {
         return new TasksList(list);
     }
 
-    @Bean(name = "Done List")
+    @Bean(name = "doneList")
     @Scope("prototype")
     public TasksList getDoneList(){
         ArrayList<String> list = new ArrayList<>();
