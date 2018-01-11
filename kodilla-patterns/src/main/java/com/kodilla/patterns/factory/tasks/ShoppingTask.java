@@ -25,14 +25,6 @@ public final class ShoppingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
-        if (isExecution()){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public boolean isExecution() {
         return execution;
     }
 
