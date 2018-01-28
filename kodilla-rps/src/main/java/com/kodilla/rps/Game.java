@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    String name;
     int numberOfWins = 0;
     int playerScore = 0;
     int computerScore = 0;
@@ -15,12 +14,16 @@ public class Game {
     Scanner takeNumberOfWins = new Scanner(System.in);
     Scanner newOrEnd = new Scanner(System.in);
     boolean end = false;
+    Score score = new Score();
+    int numberOfRound = 0;
 
     public void rps() {
         System.out.println("Rozpoczynam nową grę. \nPodaj swoje imię.");
-        name = takeName.nextLine();
-        System.out.println("Witaj " + name + ". Podaj do ilu wygranych rund chcesz grać.");
+        User user = new User(takeName.next());
+        Computer computer = new Computer("Komputer");
+        System.out.println("Witaj " + user.getName() + ". Podaj do ilu wygranych rund chcesz grać.");
         numberOfWins = takeNumberOfWins.nextInt();
+        score.setNumberOfwins(numberOfWins);
         System.out.println("Zasady gry - wciśnij: \n" +
                 "klawisz 1 - zagranie \"kamień\",\n" +
                 "klawisz 2 - zagranie \"papier\",\n" +
@@ -29,8 +32,10 @@ public class Game {
                 "klawisz n - uruchomienie gry od nowa");
 
         while (!end) {
-            int numberOfRound = 0;
-            System.out.println("\nRunda " + (numberOfRound + 1) + ": Podaj figurę (1, 2 lub 3). Jeżeli chcesz zakończyć " +
+            RandomChoice randomChoice = new RandomChoice();
+            Scanner sc = new Scanner(System.in);
+            numberOfRound++;
+            System.out.println("\nRunda " + (numberOfRound) + ": Podaj figurę (1, 2 lub 3). Jeżeli chcesz zakończyć " +
                     "grę aktualnym wynikiem wpisz: x, jeżeli chcesz zacząć od nowa, wpisz: n.");
             playerDecision = newOrEnd.nextLine();
 
@@ -40,9 +45,10 @@ public class Game {
             } else if (playerDecision.equals("n")) {
                 rps();
             }
-            int randomNumber = generator.nextInt(3) + 1;
-            score(randomNumber);
-            if (playerScore == numberOfWins || computerScore == numberOfWins) {
+            user.setDecision(randomChoice, sc);
+            computer.setDecision(randomChoice);
+            score.score(user, computer);
+            if (score.playerScore == numberOfWins || score.computerScore == numberOfWins) {
                 end = true;
             }
         }
@@ -70,12 +76,12 @@ public class Game {
 
 
     public void result() {
-        if (computerScore == playerScore) {
+        if (score.computerScore == score.playerScore) {
             System.out.println("\nWynik to remis");
-        } else if (computerScore > playerScore) {
+        } else if (score.computerScore > score.playerScore) {
             System.out.println("\nZwyciezca to: komputer");
         } else {
-            System.out.println("\nZwycięzca to: " + name);
+            System.out.println("\nZwycięzca to: " + takeName);
         }
 
         System.out.println("\nJeżeli chcesz rozpocząć nową grę wpisz: n. " +
