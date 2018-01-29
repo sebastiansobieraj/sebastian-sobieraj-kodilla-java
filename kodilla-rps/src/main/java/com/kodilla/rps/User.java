@@ -1,5 +1,6 @@
 package com.kodilla.rps;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class User {
@@ -23,7 +24,11 @@ public class User {
     }
 
     public String setDecision(RandomChoice choice, Scanner scanner) {
-        decision = choice.randomChoice(scanner.nextInt());
+        try {
+            decision = choice.randomChoice(scanner.nextInt());
+        } catch (InputMismatchException e){
+            System.out.println("Możesz wybrać tylko 1, 2 lub 3");
+        }
         return decision;
     }
 }

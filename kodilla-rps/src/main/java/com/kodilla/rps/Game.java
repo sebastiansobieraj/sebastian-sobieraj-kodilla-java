@@ -1,29 +1,27 @@
 package com.kodilla.rps;
 
-import java.util.Random;
+import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
-    int numberOfWins = 0;
-    int playerScore = 0;
-    int computerScore = 0;
-    String playerDecision;
-    String playerDecision2;
-    Random generator = new Random();
-    Scanner takeName = new Scanner(System.in);
-    Scanner takeNumberOfWins = new Scanner(System.in);
-    Scanner newOrEnd = new Scanner(System.in);
-    boolean end = false;
-    Score score = new Score();
-    int numberOfRound = 0;
 
-    public void rps() {
+    public static void rps() {
+        Scanner scanner = new Scanner(System.in);
+        Score score = new Score();
+        boolean end = false;
+        int numberOfRound = 0;
+        int numberOfWins = 0;
+        String playerDecision;
+        RandomChoice randomChoice = new RandomChoice();
+
         System.out.println("Rozpoczynam nową grę. \nPodaj swoje imię.");
-        User user = new User(takeName.next());
+        User user = new User(scanner.next());
         Computer computer = new Computer("Komputer");
         System.out.println("Witaj " + user.getName() + ". Podaj do ilu wygranych rund chcesz grać.");
-        numberOfWins = takeNumberOfWins.nextInt();
-        score.setNumberOfwins(numberOfWins);
+
+        score.setNumberOfwins(scanner.nextInt());
+
         System.out.println("Zasady gry - wciśnij: \n" +
                 "klawisz 1 - zagranie \"kamień\",\n" +
                 "klawisz 2 - zagranie \"papier\",\n" +
@@ -32,64 +30,29 @@ public class Game {
                 "klawisz n - uruchomienie gry od nowa");
 
         while (!end) {
-            RandomChoice randomChoice = new RandomChoice();
-            Scanner sc = new Scanner(System.in);
-            numberOfRound++;
-            System.out.println("\nRunda " + (numberOfRound) + ": Podaj figurę (1, 2 lub 3). Jeżeli chcesz zakończyć " +
-                    "grę aktualnym wynikiem wpisz: x, jeżeli chcesz zacząć od nowa, wpisz: n.");
-            playerDecision = newOrEnd.nextLine();
-
-            if (playerDecision.equals("x")) {
-                System.out.println("Gra zakończona");
-                break;
-            } else if (playerDecision.equals("n")) {
-                rps();
-            }
-            user.setDecision(randomChoice, sc);
-            computer.setDecision(randomChoice);
-            score.score(user, computer);
-            if (score.playerScore == numberOfWins || score.computerScore == numberOfWins) {
-                end = true;
+            while (score.getPlayerScore() < score.getNumberOfWins() && score.getComputerScore() < score.getNumberOfWins()) {
+                numberOfRound++;
+                System.out.println("\nRunda " + (numberOfRound) + ": Podaj figurę (1, 2 lub 3)");
+                user.setDecision(randomChoice, scanner);
+                computer.setDecision(randomChoice);
+                score.score(user, computer);
+                if (score.playerScore == numberOfWins || score.computerScore == numberOfWins) {
+                    end = true;
+                }
             }
         }
-        result();
-    }
 
-//    public void score(int randomNumber) {
-//        if(playerDecision.equals("1") && randomNumber == 3
-//                || playerDecision.equals("2") && randomNumber == 1
-//                || playerDecision.equals("3") && randomNumber == 2){
-//            playerScore++;
-//            System.out.println("Gracz " + name + " wybrał " + playerDecision + " komputer wylosował " + randomNumber +
-//                    "\nWynik to: " + name + ": " + playerScore + ":" + computerScore + " Komputer");
-//        } else if (playerDecision.equals("1") && randomNumber == 1
-//                || playerDecision.equals("2") && randomNumber == 2
-//                || playerDecision.equals("3") && randomNumber == 3) {
-//            System.out.println("Gracz " + name + " wybrał " + playerDecision + " komputer wylosował " + randomNumber +
-//                    "\nWynik to: " + name + ": " + playerScore + ":" + computerScore + " Komputer");
-//        } else {
-//            computerScore++;
-//            System.out.println("Gracz " + name + " wybrał " + playerDecision + " komputer wylosował " + randomNumber +
-//                    "\nWynik to: " + name + ": " + playerScore + ":" + computerScore + " Komputer");
-//        }
-//    }
-
-
-    public void result() {
-        if (score.computerScore == score.playerScore) {
-            System.out.println("\nWynik to remis");
-        } else if (score.computerScore > score.playerScore) {
-            System.out.println("\nZwyciezca to: komputer");
-        } else {
-            System.out.println("\nZwycięzca to: " + takeName);
-        }
-
+        Result result = new Result();
+        result.result(user, score);
         System.out.println("\nJeżeli chcesz rozpocząć nową grę wpisz: n. " +
                 "\nJeżeli chcesz zamknąć program wpisz: x.");
-        playerDecision2 = newOrEnd.nextLine();
-        if (playerDecision2.equals("n")) {
+        playerDecision = scanner.nextLine();
+        playerDecision = scanner.nextLine();
+//        End end1 = new End();
+//        end1.end(playerDecision, );
+        if (playerDecision.equals("n")) {
             rps();
-        } else {
+        } else if (playerDecision.equals("x")) {
             System.out.println("Koniec gry");
         }
     }
