@@ -28,6 +28,7 @@ public class User {
             decision = choice.randomChoice(scanner.nextInt());
         } catch (InputMismatchException e){
             System.out.println("Możesz wybrać tylko 1, 2 lub 3");
+            Game.rps();
         }
         return decision;
     }

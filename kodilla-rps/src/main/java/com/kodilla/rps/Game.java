@@ -1,7 +1,6 @@
 package com.kodilla.rps;
 
 import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -20,7 +19,12 @@ public class Game {
         Computer computer = new Computer("Komputer");
         System.out.println("Witaj " + user.getName() + ". Podaj do ilu wygranych rund chcesz grać.");
 
-        score.setNumberOfwins(scanner.nextInt());
+        try{
+            score.setNumberOfwins(scanner.nextInt());
+        } catch (InputMismatchException e) {
+            System.out.println("Liczba wygranych musi być określona cyframi! Wprowadź poprawną wartość");
+            rps();
+        }
 
         System.out.println("Zasady gry - wciśnij: \n" +
                 "klawisz 1 - zagranie \"kamień\",\n" +
@@ -48,12 +52,7 @@ public class Game {
                 "\nJeżeli chcesz zamknąć program wpisz: x.");
         playerDecision = scanner.nextLine();
         playerDecision = scanner.nextLine();
-//        End end1 = new End();
-//        end1.end(playerDecision, );
-        if (playerDecision.equals("n")) {
-            rps();
-        } else if (playerDecision.equals("x")) {
-            System.out.println("Koniec gry");
-        }
+        End end1 = new End();
+        end1.end(playerDecision);
     }
 }
