@@ -27,11 +27,11 @@ public class TestExcercise {
 
     }
 
-    @Test (expected = TwoNumbersShouldBePositiveException.class)
-    public void TestExcercise3() throws NumberNotEqualZeroException, TwoNumbersShouldBePositiveException {
-
-        Excerscise excerscise = new Excerscise();
-
-        excerscise.power(12.0, 0.0);
-    }
+//    @Test (expected = TwoNumbersShouldBePositiveException.class)
+//    public void TestExcercise3() throws NumberNotEqualZeroException, TwoNumbersShouldBePositiveException {
+//
+//        Excerscise excerscise = new Excerscise();
+//
+//        excerscise.power(12.0, 0.0);
+//    }
 }
