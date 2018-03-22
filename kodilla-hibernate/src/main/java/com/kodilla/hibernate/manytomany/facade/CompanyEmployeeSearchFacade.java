@@ -22,7 +22,7 @@ public class CompanyEmployeeSearchFacade {
     @Autowired
     private CompanyDao companyDao;
 
-    public List<Employee> emplyeeSearch(final String characters) throws CompanyEmployeeSearchException {
+    public List<Employee> employeeSearch(final String characters) throws CompanyEmployeeSearchException {
         boolean wasError = false;
         List<Employee> employeeList;
         String wordToFind = "%" + characters + "%";

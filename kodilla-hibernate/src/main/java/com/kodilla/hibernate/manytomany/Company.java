@@ -12,11 +12,11 @@ import java.util.List;
 
 @NamedQuery(
         name = "Company.searchByPartOfName",
-        query = "FROM Company WHERE name LIKE: CHARACTERS"
+        query = "FROM Company WHERE name LIKE :CHARACTERS"
 )
 
 @Entity
-@Table(name = "COMPANIES")
+@Table(name="COMPANIES")
 public class Company {
     private int id;
     private String name;
@@ -32,13 +32,13 @@ public class Company {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "COMPANY_ID", unique = true)
+    @Column(name="COMPANY_ID", unique = true)
     public int getId() {
         return id;
     }
 
     @NotNull
-    @Column(name = "COMPANY_NAME")
+    @Column(name="COMPANY_NAME")
     public String getName() {
         return name;
     }

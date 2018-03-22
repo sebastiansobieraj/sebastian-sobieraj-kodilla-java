@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "EMPLOYEES")
+@Table(name="EMPLOYEES")
 public class Employee {
     private int id;
     private String firstname;
@@ -37,19 +37,19 @@ public class Employee {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "EMPLOYEE_ID", unique = true)
+    @Column(name="EMPLOYEE_ID", unique = true)
     public int getId() {
         return id;
     }
 
     @NotNull
-    @Column(name = "FIRSTNAME")
+    @Column(name="FIRSTNAME")
     public String getFirstname() {
         return firstname;
     }
 
     @NotNull
-    @Column(name = "LASTNAME")
+    @Column(name="LASTNAME")
     public String getLastname() {
         return lastname;
     }

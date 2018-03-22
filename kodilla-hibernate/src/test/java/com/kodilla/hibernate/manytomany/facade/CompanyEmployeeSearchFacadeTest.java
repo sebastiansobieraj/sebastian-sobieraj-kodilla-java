@@ -44,7 +44,7 @@ public class CompanyEmployeeSearchFacadeTest {
         int lindaKovalskyId = lindaKovalsky.getId();
 
         String characters = "smi";
-        List<Employee> employeeList = companyEmployeeSearchFacade.emplyeeSearch(characters);
+        List<Employee> employeeList = companyEmployeeSearchFacade.employeeSearch(characters);
 
         //Then
         Assert.assertEquals(1, employeeList.size());
@@ -60,7 +60,7 @@ public class CompanyEmployeeSearchFacadeTest {
     }
 
     @Test
-    public void processCompanySearchTest() throws CompanyEmployeeSearchException {
+    public void companySearchTest() throws CompanyEmployeeSearchException {
         //Given
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
