@@ -13,7 +13,7 @@ import java.util.List;
 
         @NamedQuery(
                 name = "Employee.searchByPartOfName",
-                query = "FROM Employee WHERE lastname LIKE :CHARACTERS"
+                query = "FROM Employee WHERE lastname LIKE CONCAT(CONCAT('%',:CHARACTERS), '%')"
         )
 })
 

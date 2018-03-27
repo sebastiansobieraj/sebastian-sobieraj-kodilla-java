@@ -25,10 +25,9 @@ public class CompanyEmployeeSearchFacade {
     public List<Employee> employeeSearch(final String characters) throws CompanyEmployeeSearchException {
         boolean wasError = false;
         List<Employee> employeeList;
-        String wordToFind = "%" + characters + "%";
         try {
             LOGGER.info("Searching employee by phrase: " + characters);
-            employeeList = employeeDao.searchByPartOfName(wordToFind);
+            employeeList = employeeDao.searchByPartOfName(characters);
             if (employeeList.size() == 0) {
                 wasError = true;
                 LOGGER.error(CompanyEmployeeSearchException.ERR_NO_EMPLOYEE_FOUND);
@@ -49,10 +48,9 @@ public class CompanyEmployeeSearchFacade {
     public List<Company> searchCompany(final String characters) throws CompanyEmployeeSearchException {
     boolean wasError = false;
     List<Company> companyList;
-    String wordToFind = "%" + characters + "%";
         try {
             LOGGER.info("Searching company by phrase: " + characters);
-            companyList = companyDao.searchByPartOfName(wordToFind);
+            companyList = companyDao.searchByPartOfName(characters);
             if (companyList.size() == 0) {
                 wasError = true;
                 LOGGER.error(CompanyEmployeeSearchException.ERR_NO_COMPANY_FOUND);
