@@ -36,8 +36,14 @@ public class StoredProcTestSuite {
     public void testUpdateBestsellers() throws SQLException {
         //Given
         DbManager dbManager = DbManager.getInstance();
+        String sqlInsert = "INSERT INTO RENTS(BOOK_ID, READER_ID, RENT_DATE, RETURN_DATE)" +
+                "VALUES (2, 2, CURDATE() - 5, null)";
+        String sqlInsert2 = "INSERT INTO RENTS(BOOK_ID, READER_ID, RENT_DATE, RETURN_DATE)" +
+                "VALUES (2, 2, CURDATE() - 1, null)";
         String sqlUpdate = "UPDATE BOOKS SET BESTSELLER = FALSE";
         Statement statement = dbManager.getConnection().createStatement();
+        statement.execute(sqlInsert);
+        statement.execute(sqlInsert2);
         statement.executeUpdate(sqlUpdate);
 
         //When
@@ -45,12 +51,18 @@ public class StoredProcTestSuite {
         statement.execute(sqlCallUpdateBestsellers);
 
         //Then
-        String sqlCheckUpdate = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER = TRUE";
+        String sqlCheckUpdate = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER = 1";
         ResultSet st = statement.executeQuery(sqlCheckUpdate);
         int howMany = 0;
         if(st.next()) {
             howMany = st.getByte("HOW_MANY");
         }
-        assertEquals(5, howMany);
+        assertEquals(2, howMany);
+
+        //Cleanup
+        String sqlCleanUpInsert = "DELETE FROM RENTS WHERE RENT_DATE = curdate() - 5";
+        String sqlCleanUpInsert2 = "DELETE FROM  RENTS WHERE RENT_DATE = curdate() - 1";
+        statement.execute(sqlCleanUpInsert);
+        statement.execute(sqlCleanUpInsert2);
     }
 }
